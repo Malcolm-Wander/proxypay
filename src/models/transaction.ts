@@ -18,6 +18,8 @@ export enum TransactionStatus {
   Failed = "failed",
   Cancelled = "cancelled",
   Review = "review",
+  Dispute = "dispute",
+  Reversed = "reversed",
   ClawedBack = "clawed_back",
 }
 
@@ -195,7 +197,7 @@ export class TransactionModel {
     const res = await queryWrite(q, params);
     if (!res.rowCount) return;
 
-    const row = result.rows[0];
+    const row = res.rows[0];
 
     // ── Invalidate caches on transaction status update ────────────────────
     if (row.user_id) {
