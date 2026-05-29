@@ -34,10 +34,10 @@ export const auditInterceptor = (db: Pool) => {
           };
           
           const query = `
-            INSERT INTO audit_logs (admin_id, action, resource, resource_id, diff, ip_address, user_agent, created_at)
-            VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+            INSERT INTO audit_logs (admin_id, action, resource, resource_id, diff, ip_address, user_agent)
+            VALUES ($1, $2, $3, $4, $5, $6, $7)
           `;
-
+          
           await db.query(query, [
             adminId,
             action,
@@ -45,8 +45,7 @@ export const auditInterceptor = (db: Pool) => {
             resourceId,
             JSON.stringify(diff),
             req.ip,
-            req.get('user-agent') || null,
-            new Date().toISOString()
+            req.get('user-agent') || null
           ]);
         } catch (error) {
           console.error('[Audit Log] Failed to save admin audit log event:', error);
