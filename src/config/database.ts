@@ -3,6 +3,8 @@ import { isReadOnlyQuery } from "../utils/readOnlyDetector";
 import { dbReplicaLagSeconds, dbReplicaReadEnabled } from "../utils/metrics";
 import { IS_SANDBOX, SANDBOX_DATABASE_URL, DATABASE_URL } from "./env";
 
+const productionSsl =
+  process.env.NODE_ENV === "production" ? { rejectUnauthorized: true } : undefined;
 
 // Configuration for slow query logging
 const SLOW_QUERY_THRESHOLD_MS = parseInt(
@@ -138,6 +140,7 @@ export const pool = new Pool({
     max: 1000,
     idleTimeoutMillis: 30000,
     connectionTimeoutMillis: 500,
+    ssl: productionSsl,
   });
 
 // Wrap query for slow-query logging while preserving Pool typings.
@@ -208,15 +211,16 @@ const replicaStatuses: ReplicaStatus[] = replicaUrls.map((url) => ({
 }));
 
 // Build an individual Pool for each replica URL
-const replicaPools: Pool[] = replicaUrls.map(
-  (url) =>
-    new Pool({
-      connectionString: url,
-      max: 50,
-      idleTimeoutMillis: 30000,
-      connectionTimeoutMillis: 500,
-    }),
-);
+  const replicaPools: Pool[] = replicaUrls.map(
+    (url) =>
+      new Pool({
+        connectionString: url,
+        max: 50,
+        idleTimeoutMillis: 30000,
+        connectionTimeoutMillis: 500,
+        ssl: productionSsl,
+      }),
+  );
 
 // Track which replica to use next for round-robin load balancing
 let replicaIndex = 0;
