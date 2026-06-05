@@ -46,6 +46,11 @@ BEGIN
   END IF;
 END$$;
 
+
+-- Ensure created_at is NOT NULL (required for partition key)
+-- First backfill any NULL values, then add the constraint
+UPDATE transactions SET created_at = CURRENT_TIMESTAMP WHERE created_at IS NULL;
+ALTER TABLE transactions ALTER COLUMN created_at SET NOT NULL;
 -- ─────────────────────────────────────────────────────────────────────────────
 -- Step 1: Drop constraints that are incompatible with partition attachment.
 --

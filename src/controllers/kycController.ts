@@ -496,9 +496,7 @@ export class KYCController {
       return false;
     }
   }
-    });
-  }
-};
+
   // Private helper methods
 
   private async storeApplicantReference(
