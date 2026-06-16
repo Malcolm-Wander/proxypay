@@ -130,3 +130,4 @@ redis-cli FLUSHDB
 - Review [DISTRIBUTED_LOCKS.md](./DISTRIBUTED_LOCKS.md) for usage patterns
 - Implement locks in critical sections
 - Monitor lock performance in production
+

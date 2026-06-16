@@ -386,3 +386,4 @@ curl -X GET /api/v1/vaults/balance-summary \
 ```
 
 This vault system provides a robust foundation for users to organize their finances while maintaining the integrity of the underlying ledger system.
+

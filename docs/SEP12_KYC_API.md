@@ -314,3 +314,4 @@ Key metrics to monitor:
 - [SEP-12 Specification](https://github.com/stellar/stellar-protocol/blob/master/ecosystem/sep-0012.md)
 - [Stellar Anchor Platform](https://github.com/stellar/stellar-anchor-platform)
 - [Entrust Identity Verification](https://www.entrust.com/digital-security/identity-verification)
+

@@ -42,3 +42,4 @@ src/jobs/
 ## Error Handling
 
 Each job runs inside a try/catch. Failures are logged with `console.error` and do not crash the server or affect other jobs.
+

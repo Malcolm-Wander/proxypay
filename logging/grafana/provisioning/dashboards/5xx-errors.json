@@ -11,7 +11,7 @@
   "annotations": {
     "list": []
   },
-  "description": "Tracks 5xx HTTP errors across all mobile-money-api instances",
+  "description": "Tracks 5xx HTTP errors across all proxypay-api instances",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
@@ -35,7 +35,7 @@
       "targets": [
         {
           "datasource": { "type": "loki", "uid": "loki" },
-          "expr": "sum by (instance_id) (count_over_time({service=\"mobile-money-api\"} | json | statusCode >= 500 [$__interval]))",
+          "expr": "sum by (instance_id) (count_over_time({service=\"proxypay-api\"} | json | statusCode >= 500 [$__interval]))",
           "legendFormat": "5xx — {{instance_id}}",
           "refId": "A"
         }
@@ -64,7 +64,7 @@
       "targets": [
         {
           "datasource": { "type": "loki", "uid": "loki" },
-          "expr": "sum(count_over_time({service=\"mobile-money-api\"} | json | statusCode >= 500 [5m]))",
+          "expr": "sum(count_over_time({service=\"proxypay-api\"} | json | statusCode >= 500 [5m]))",
           "legendFormat": "5xx last 5m",
           "refId": "B"
         }
@@ -86,7 +86,7 @@
       "targets": [
         {
           "datasource": { "type": "loki", "uid": "loki" },
-          "expr": "{service=\"mobile-money-api\"} | json | statusCode >= 500",
+          "expr": "{service=\"proxypay-api\"} | json | statusCode >= 500",
           "legendFormat": "",
           "refId": "C"
         }
@@ -108,7 +108,7 @@
       "targets": [
         {
           "datasource": { "type": "loki", "uid": "loki" },
-          "expr": "{service=\"mobile-money-api\"} | json | level=\"ERROR\"",
+          "expr": "{service=\"proxypay-api\"} | json | level=\"ERROR\"",
           "legendFormat": "",
           "refId": "D"
         }

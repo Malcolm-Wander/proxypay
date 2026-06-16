@@ -2,7 +2,7 @@ app:
   enabled: true
   replicaCount: 3
   image:
-    repository: shantelpeters/mobile-money
+    repository: shantelpeters/proxypay
     tag: latest
     pullPolicy: IfNotPresent
   service:
@@ -25,7 +25,7 @@ worker:
   enabled: true
   replicaCount: 1
   image:
-    repository: shantelpeters/mobile-money
+    repository: shantelpeters/proxypay
     tag: latest
     pullPolicy: IfNotPresent
   resources:

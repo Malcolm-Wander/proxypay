@@ -22,8 +22,8 @@ async function main() {
   console.log("🔄 Database Backup Script");
   console.log("================================================");
   console.log(`Started: ${new Date().toISOString()}`);
-  console.log(`Database: ${process.env.DB_NAME || "mobilemoney_stellar"}`);
-  console.log(`Backup Bucket: ${process.env.BACKUP_BUCKET || "mobile-money-backups"}`);
+  console.log(`Database: ${process.env.DB_NAME || "proxypay_stellar"}`);
+  console.log(`Backup Bucket: ${process.env.BACKUP_BUCKET || "proxypay-backups"}`);
   console.log("");
 
   try {

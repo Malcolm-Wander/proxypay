@@ -24,7 +24,7 @@ async function main() {
   console.log("🔄 Database Backup Verification Script");
   console.log("================================================");
   console.log(`Started: ${new Date().toISOString()}`);
-  console.log(`Backup Bucket: ${process.env.BACKUP_BUCKET || "mobile-money-backups"}`);
+  console.log(`Backup Bucket: ${process.env.BACKUP_BUCKET || "proxypay-backups"}`);
   console.log("");
 
   try {

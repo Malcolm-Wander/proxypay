@@ -26,7 +26,7 @@ const fsUnlink = promisify(fs.unlink);
 
 // ─── Configuration ────────────────────────────────────────────────────────
 
-const BACKUP_BUCKET = process.env.BACKUP_BUCKET || "mobile-money-backups";
+const BACKUP_BUCKET = process.env.BACKUP_BUCKET || "proxypay-backups";
 const BACKUP_RETENTION_DAYS = 30;
 const ENCRYPTION_ALGORITHM = "aes-256-gcm";
 const IV_LENGTH = 12; // 96-bit IV for GCM
@@ -275,7 +275,7 @@ export async function createBackup(): Promise<BackupResult> {
     // Prepare metadata
     const metadata: BackupMetadata = {
       timestamp: new Date().toISOString(),
-      database: process.env.DB_NAME || "mobilemoney_stellar",
+      database: process.env.DB_NAME || "proxypay_stellar",
       size: dumpStats.size,
       compressed: false,
       encrypted: true,

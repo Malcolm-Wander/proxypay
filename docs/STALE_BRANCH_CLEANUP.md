@@ -43,3 +43,4 @@ The workflow uses `GITHUB_TOKEN` with:
 - `contents: write` to delete stale branch refs
 - `issues: write` to create/update warning issues and add PR comments
 - `pull-requests: read` to detect open pull requests
+

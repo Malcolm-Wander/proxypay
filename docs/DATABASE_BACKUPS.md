@@ -49,18 +49,18 @@ Output:
 🔄 Database Backup Script
 ================================================
 Started: 2026-04-27T15:32:00Z
-Database: mobilemoney_stellar
-Backup Bucket: mobile-money-backups
+Database: proxypay_stellar
+Backup Bucket: proxypay-backups
 
 Starting backup to /tmp/backups/2026-04-27T15-32-00Z.dump...
 ✓ Backup dump created: 245.67 MB
 Encrypting backup...
 Uploading to S3...
-✓ Backup uploaded to S3: s3://mobile-money-backups/backups/2026-04-27T15-32-00Z.dump.enc
+✓ Backup uploaded to S3: s3://proxypay-backups/backups/2026-04-27T15-32-00Z.dump.enc
 
 ✅ Backup Successful!
    Backup ID: 2026-04-27T15-32-00Z
-   S3 URL: s3://mobile-money-backups/backups/2026-04-27T15-32-00Z.dump.enc
+   S3 URL: s3://proxypay-backups/backups/2026-04-27T15-32-00Z.dump.enc
    Size: 245.67 MB
    Duration: 87234ms
    Checksum: a7f3d8e2c4b1...
@@ -99,16 +99,16 @@ spec:
           serviceAccountName: mobile-money
           containers:
           - name: backup
-            image: mobile-money:latest
+            image: proxypay:latest
             command: ["npm", "run", "backup:create"]
             env:
             - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
-                  name: mobile-money-secrets
+                  name: proxypay-secrets
                   key: database-url
             - name: BACKUP_BUCKET
-              value: mobile-money-backups
+              value: proxypay-backups
             - name: AWS_REGION
               value: us-east-1
           restartPolicy: OnFailure
@@ -123,7 +123,7 @@ spec:
 DATABASE_URL=postgresql://user:pass@host:5432/db
 
 # Optional
-BACKUP_BUCKET=mobile-money-backups              # Default
+BACKUP_BUCKET=proxypay-backups              # Default
 BACKUP_RETENTION_DAYS=30                        # Default
 TEMP_BACKUP_DIR=/tmp/backups                    # Default
 MAX_BACKUP_SIZE_GB=10                           # Safety limit
@@ -235,7 +235,7 @@ resource "aws_cloudwatch_metric_alarm" "backup_bucket_size" {
 
 S3 access logs stored in separate bucket:
 ```
-s3://mobile-money-backups-logs/backups/
+s3://proxypay-backups-logs/backups/
 ```
 
 Useful for:
@@ -248,7 +248,7 @@ Useful for:
 ### List Available Backups
 
 ```bash
-aws s3 ls s3://mobile-money-backups/backups/ \
+aws s3 ls s3://proxypay-backups/backups/ \
   --recursive \
   --human-readable \
   --summarize
@@ -258,7 +258,7 @@ aws s3 ls s3://mobile-money-backups/backups/ \
 
 ```bash
 # Download encrypted backup
-aws s3 cp s3://mobile-money-backups/backups/2026-04-27T15-32-00Z.dump.enc .
+aws s3 cp s3://proxypay-backups/backups/2026-04-27T15-32-00Z.dump.enc .
 
 # Decrypt using the backup service (requires implementation)
 npx tsx src/scripts/restore.ts 2026-04-27T15-32-00Z.dump.enc
@@ -303,7 +303,7 @@ Test coverage includes:
 aws sts get-caller-identity
 
 # Check bucket permissions
-aws s3api head-bucket --bucket mobile-money-backups
+aws s3api head-bucket --bucket proxypay-backups
 
 # Verify IAM role has S3 permissions
 aws iam get-role-policy --role-name ecs-task-role --policy-name backup-policy
@@ -331,7 +331,7 @@ echo $DB_ENCRYPTION_KEY | wc -c  # Should be > 0
 
 # Verify checksum
 aws s3api head-object \
-  --bucket mobile-money-backups \
+  --bucket proxypay-backups \
   --key backups/2026-04-27T15-32-00Z.dump.enc \
   --query Metadata
 ```
@@ -341,11 +341,11 @@ aws s3api head-object \
 ```bash
 # Verify lifecycle configuration
 aws s3api get-bucket-lifecycle-configuration \
-  --bucket mobile-money-backups
+  --bucket proxypay-backups
 
 # Check backup object age
 aws s3api list-objects-v2 \
-  --bucket mobile-money-backups \
+  --bucket proxypay-backups \
   --prefix backups/ \
   --query 'Contents[].{Key:Key,LastModified:LastModified}' \
   --output table
@@ -392,3 +392,4 @@ aws s3api list-objects-v2 \
 - [AWS S3 Lifecycle Configuration](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html)
 - [NIST SP 800-38D: GCM Mode](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-38d.pdf)
 - [OWASP: Encryption Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Encryption_Cheat_Sheet.html)
+

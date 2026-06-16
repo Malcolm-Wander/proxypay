@@ -47,7 +47,7 @@ export function stopHeartbeatService(): void {
   }
 
   // Mark as unavailable when stopping
-  systemHeartbeat.set({ service: "mobile-money" }, 0);
+  systemHeartbeat.set({ service: "proxypay" }, 0);
 }
 
 /**
@@ -56,7 +56,7 @@ export function stopHeartbeatService(): void {
  */
 function updateHeartbeat(): void {
   try {
-    systemHeartbeat.set({ service: "mobile-money" }, 1);
+    systemHeartbeat.set({ service: "proxypay" }, 1);
   } catch (error) {
     console.error("[Heartbeat Service] Failed to update heartbeat:", error);
   }
@@ -71,7 +71,7 @@ export async function getHeartbeatStatus(): Promise<number> {
     // Access the internal metric value
     const metrics = await systemHeartbeat.get();
     const heartbeatMetric = metrics.values.find(
-      (v: any) => v.labels.service === "mobile-money",
+      (v: any) => v.labels.service === "proxypay",
     );
     return heartbeatMetric ? heartbeatMetric.value : 0;
   } catch (error) {

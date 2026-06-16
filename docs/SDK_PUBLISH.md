@@ -8,8 +8,8 @@ When a GitHub Release is **published** (not just drafted), the workflow at `.git
 
 | SDK | Registry | Package |
 |-----|----------|---------|
-| Kotlin/JVM | Maven Central (via Sonatype OSSRH) | `com.mobilemoney:mobile-money-sdk` |
-| TypeScript | npm registry | `mobile-money-sdk` |
+| Kotlin/JVM | Maven Central (via Sonatype OSSRH) | `com.mobilemoney:proxypay-sdk` |
+| TypeScript | npm registry | `proxypay-sdk` |
 
 The version is derived directly from the release tag (e.g. `v1.2.3` → `1.2.3`).
 
@@ -163,7 +163,8 @@ Snapshot versions (ending in `-SNAPSHOT`) are published to the Sonatype snapshot
 
 **npm publish fails with "403 Forbidden"**
 - Ensure `NPM_TOKEN` is an **Automation** token, not a read-only token.
-- Verify the package name `mobile-money-sdk` is not already claimed by another user/org on npm.
+- Verify the package name `proxypay-sdk` is not already claimed by another user/org on npm.
 
 **OpenAPI spec generation fails**
 - The workflow falls back to `public/openapi.json`. Ensure this file is kept up to date by running `npm run generate:openapi` before tagging a release.
+

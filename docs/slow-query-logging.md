@@ -158,3 +158,4 @@ The structured JSON format integrates well with log aggregation tools:
 - Email addresses, phone numbers, and API keys are masked
 - Large numeric values are obfuscated
 - The sanitization can be extended for additional sensitive patterns
+

@@ -79,7 +79,7 @@ const result = await response.json();
   "success": true,
   "data": {
     "document_id": "550e8400-e29b-41d4-a716-446655440000",
-    "file_url": "https://mobile-money-kyc-documents.s3.us-east-1.amazonaws.com/kyc-documents/2024/03/user-id/passport-1234567890-abc123def456.pdf",
+    "file_url": "https://proxypay-kyc-documents.s3.us-east-1.amazonaws.com/kyc-documents/2024/03/user-id/passport-1234567890-abc123def456.pdf",
     "applicant_id": "abc123",
     "uploaded_at": "2024-03-26T10:30:00.000Z"
   }
@@ -155,7 +155,7 @@ curl -X GET http://localhost:3000/api/kyc/documents \
       "applicant_id": "abc123",
       "document_type": "passport",
       "document_side": "front",
-      "file_url": "https://mobile-money-kyc-documents.s3.us-east-1.amazonaws.com/kyc-documents/2024/03/user-id/passport-1234567890-abc123def456.pdf",
+      "file_url": "https://proxypay-kyc-documents.s3.us-east-1.amazonaws.com/kyc-documents/2024/03/user-id/passport-1234567890-abc123def456.pdf",
       "original_filename": "passport.pdf",
       "file_size": 1048576,
       "mime_type": "application/pdf",
@@ -176,7 +176,7 @@ Add the following variables to your `.env` file:
 AWS_REGION=us-east-1
 AWS_ACCESS_KEY_ID=your_aws_access_key_id
 AWS_SECRET_ACCESS_KEY=your_aws_secret_access_key
-AWS_S3_BUCKET=mobile-money-kyc-documents
+AWS_S3_BUCKET=proxypay-kyc-documents
 ```
 
 ### S3 Bucket Setup
@@ -185,7 +185,7 @@ AWS_S3_BUCKET=mobile-money-kyc-documents
    - Log in to AWS Console
    - Navigate to S3
    - Click "Create bucket"
-   - Enter bucket name (e.g., `mobile-money-kyc-documents`)
+   - Enter bucket name (e.g., `proxypay-kyc-documents`)
    - Select region (e.g., `us-east-1`)
    - Keep "Block all public access" enabled for security
 
@@ -206,8 +206,8 @@ AWS_S3_BUCKET=mobile-money-kyc-documents
         "s3:ListBucket"
       ],
       "Resource": [
-        "arn:aws:s3:::mobile-money-kyc-documents/*",
-        "arn:aws:s3:::mobile-money-kyc-documents"
+        "arn:aws:s3:::proxypay-kyc-documents/*",
+        "arn:aws:s3:::proxypay-kyc-documents"
       ]
     }
   ]
@@ -456,3 +456,4 @@ describe('KYC Document Upload', () => {
 - [ ] Support for multiple file uploads
 - [ ] Add image compression for photos
 - [ ] Implement document preview generation
+

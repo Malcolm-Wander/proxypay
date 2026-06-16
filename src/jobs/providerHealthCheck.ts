@@ -24,7 +24,7 @@ const activeIncidents = new Map<ProviderName, IncidentRecord>();
 const PAGERDUTY_API = "https://events.pagerduty.com/v2/enqueue";
 const INTEGRATION_KEY = process.env.PAGERDUTY_INTEGRATION_KEY ?? "";
 const DEDUP_PREFIX =
-  process.env.PAGERDUTY_DEDUP_KEY ?? "mobile-money-provider-watchdog";
+  process.env.PAGERDUTY_DEDUP_KEY ?? "proxypay-provider-watchdog";
 
 function dedupeKey(provider: ProviderName): string {
   return `${DEDUP_PREFIX}-${provider}-outage`;

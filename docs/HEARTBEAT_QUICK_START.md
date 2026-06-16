@@ -126,4 +126,5 @@ npm test -- tests/metrics.heartbeat.test.ts
 
 - [Prometheus Documentation](https://prometheus.io/docs/)
 - [prom-client Library](https://github.com/siimon/prom-client)
-- [GitHub Issue #1022](https://github.com/sublime247/mobile-money/issues/1022)
+- [GitHub Issue #1022](https://github.com/sublime247/proxypay/issues/1022)
+

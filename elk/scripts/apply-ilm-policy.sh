@@ -2,7 +2,7 @@
 set -eu
 
 ELASTICSEARCH_URL="${ELASTICSEARCH_URL:-http://localhost:9200}"
-POLICY_FILE="${POLICY_FILE:-$(cd "$(dirname "$0")/../ilm" && pwd)/mobile-money-logs-policy.json}"
+POLICY_FILE="${POLICY_FILE:-$(cd "$(dirname "$0")/../ilm" && pwd)/proxypay-logs-policy.json}"
 
 echo "Applying ILM policy from ${POLICY_FILE} to ${ELASTICSEARCH_URL}"
 
@@ -11,7 +11,7 @@ until curl -fsS "${ELASTICSEARCH_URL}" >/dev/null 2>&1; do
   sleep 5
 done
 
-curl -fsS -X PUT "${ELASTICSEARCH_URL}/_ilm/policy/mobile-money-logs-policy" \
+curl -fsS -X PUT "${ELASTICSEARCH_URL}/_ilm/policy/proxypay-logs-policy" \
   -H 'Content-Type: application/json' \
   -d @"${POLICY_FILE}"
 

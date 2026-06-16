@@ -295,3 +295,4 @@ The existing fee config cache uses 1 hour. For a strategy engine that marketing 
 
 **Why store `evaluationTime` as a parameter?**
 This makes time-based strategies fully testable without mocking `Date.now()`. The `/calculate` endpoint accepts an optional `evaluationTime` so QA can verify Friday promotions on any day.
+

@@ -98,8 +98,8 @@ The CI workflow (`.github/workflows/ci.yml`) executes the following jobs:
 
 **Image Tags**:
 
-- `{repository}:{commit-sha}` - Always applied (e.g., `sublime247/mobile-money:a1b2c3d`)
-- `{repository}:{branch-name}` - Always applied (e.g., `sublime247/mobile-money:main`)
+- `{repository}:{commit-sha}` - Always applied (e.g., `sublime247/proxypay:a1b2c3d`)
+- `{repository}:{branch-name}` - Always applied (e.g., `sublime247/proxypay:main`)
 - `{repository}:latest` - Only applied on main branch
 
 **Failure Behavior**: If Docker build or push fails, deployment is blocked.
@@ -660,7 +660,7 @@ The README.md displays two status badges:
 ### CI Status Badge
 
 ```markdown
-![CI](https://github.com/sublime247/mobile-money/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/sublime247/proxypay/actions/workflows/ci.yml/badge.svg)
 ```
 
 Shows the current status of the CI workflow:
@@ -671,7 +671,7 @@ Shows the current status of the CI workflow:
 ### Coverage Badge
 
 ```markdown
-![Coverage](https://codecov.io/gh/sublime247/mobile-money/branch/main/graph/badge.svg)
+![Coverage](https://codecov.io/gh/sublime247/proxypay/branch/main/graph/badge.svg)
 ```
 
 Shows the current code coverage percentage from Codecov.
@@ -735,3 +735,4 @@ For pipeline issues or questions:
 2. Review workflow logs in Actions tab
 3. Search existing GitHub issues
 4. Create a new issue with detailed information
+

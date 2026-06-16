@@ -48,7 +48,7 @@ variable "app_port" {
 variable "container_image" {
   description = "Docker image URI for the application"
   type        = string
-  default     = "shantelpeters/mobile-money:latest"
+  default     = "shantelpeters/proxypay:latest"
 }
 
 variable "task_cpu" {
@@ -91,7 +91,7 @@ variable "db_allocated_storage" {
 variable "db_name" {
   description = "Name of the PostgreSQL database"
   type        = string
-  default     = "mobilemoney_stellar"
+  default     = "proxypay_stellar"
 }
 
 variable "db_username" {

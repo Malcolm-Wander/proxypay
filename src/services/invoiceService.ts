@@ -23,12 +23,12 @@ export class InvoiceService {
       doc
         .fillColor('#444444')
         .fontSize(20)
-        .text('OPULENCE MOBILE MONEY', 50, 45)
+        .text('PROXYPAY', 50, 45)
         .fontSize(10)
         .text('Branded Monthly Invoice', 50, 70)
         .text('Opulence Financial Services Ltd.', 200, 45, { align: 'right' })
         .text('123 Finance Plaza, Douala, Cameroon', 200, 60, { align: 'right' })
-        .text('https://mobilemoney.opulence.com', 200, 75, { align: 'right' })
+        .text('https://proxypay.com', 200, 75, { align: 'right' })
         .moveDown();
 
       // Horizontal Line
@@ -164,7 +164,7 @@ export class InvoiceService {
           .fontSize(8)
           .fillColor('#888888')
           .text(
-            'Thank you for using Opulence Mobile Money. This is a computer-generated document.',
+            'Thank you for using ProxyPay. This is a computer-generated document.',
             50,
             750,
             { align: 'center', width: 500 }

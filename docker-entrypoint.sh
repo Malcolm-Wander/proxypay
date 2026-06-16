@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-# Docker entrypoint script for mobile-money
+# Docker entrypoint script for proxypay
 # Supports running migrations before starting the application
 
 # If the first argument is a migration command, run it

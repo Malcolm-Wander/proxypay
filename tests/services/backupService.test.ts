@@ -34,7 +34,7 @@ jest.mock("@aws-sdk/client-s3", () => {
             return Promise.resolve({
               Metadata: {
                 "backup-timestamp": new Date().toISOString(),
-                "backup-database": "mobilemoney_stellar",
+                "backup-database": "proxypay_stellar",
                 "backup-size": "1024",
                 "backup-compressed": "false",
                 "backup-encrypted": "true",
@@ -155,7 +155,7 @@ describe("Backup Service (Issue #553)", () => {
     it("should create valid backup metadata", () => {
       const metadata: BackupMetadata = {
         timestamp: new Date().toISOString(),
-        database: "mobilemoney_stellar",
+        database: "proxypay_stellar",
         size: 52428800, // 50MB
         compressed: false,
         encrypted: true,
@@ -199,7 +199,7 @@ describe("Backup Service (Issue #553)", () => {
 
       const metadata: BackupMetadata = {
         timestamp: new Date().toISOString(),
-        database: "mobilemoney_stellar",
+        database: "proxypay_stellar",
         size: 1024,
         compressed: false,
         encrypted: true,
@@ -216,7 +216,7 @@ describe("Backup Service (Issue #553)", () => {
     it("should reject backup with invalid checksum format", async () => {
       const metadata: BackupMetadata = {
         timestamp: new Date().toISOString(),
-        database: "mobilemoney_stellar",
+        database: "proxypay_stellar",
         size: 1024,
         compressed: false,
         encrypted: true,
@@ -233,7 +233,7 @@ describe("Backup Service (Issue #553)", () => {
     it("should reject backup with empty checksum", async () => {
       const metadata: BackupMetadata = {
         timestamp: new Date().toISOString(),
-        database: "mobilemoney_stellar",
+        database: "proxypay_stellar",
         size: 1024,
         compressed: false,
         encrypted: true,
@@ -264,7 +264,7 @@ describe("Backup Service (Issue #553)", () => {
     it("should have 30-day retention configured", () => {
       const metadata: BackupMetadata = {
         timestamp: new Date().toISOString(),
-        database: "mobilemoney_stellar",
+        database: "proxypay_stellar",
         size: 1024,
         compressed: false,
         encrypted: true,
@@ -282,7 +282,7 @@ describe("Backup Service (Issue #553)", () => {
 
       const metadata: BackupMetadata = {
         timestamp: oneDayAgo.toISOString(),
-        database: "mobilemoney_stellar",
+        database: "proxypay_stellar",
         size: 1024,
         compressed: false,
         encrypted: true,

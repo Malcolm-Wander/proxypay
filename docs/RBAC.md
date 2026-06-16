@@ -280,3 +280,4 @@ Use the login endpoint to generate tokens for different roles and test access co
 3. **Permission Inheritance**: Role hierarchy support
 4. **Time-based Access**: Temporary permissions
 5. **IP-based Restrictions**: Location-based access control
+

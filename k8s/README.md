@@ -23,13 +23,13 @@ This directory contains the manifests required to deploy the Mobile Money to Ste
    A Helm chart is available under `k8s/helm` to deploy the backend, Redis, Bull worker, and autoscaling.
    Install the chart with:
    ```bash
-   helm install mobile-money k8s/helm --namespace mobile-money --create-namespace
+   helm install proxypay k8s/helm --namespace proxypay --create-namespace
    ```
 
 5. Verify Deployment:
    ```bash
-    kubectl get pods -l app=mobile-money
-    kubectl get svc mobile-money-service
+    kubectl get pods -l app=proxypay
+    kubectl get svc proxypay-service
    ```
 
 ## Autoscaling

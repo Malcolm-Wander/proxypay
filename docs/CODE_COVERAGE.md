@@ -21,11 +21,11 @@ These thresholds are enforced in CI/CD pipeline and will fail builds that don't 
 
 The README displays the current coverage percentage:
 
-[![codecov](https://codecov.io/gh/sublime247/mobile-money/branch/main/graph/badge.svg)](https://codecov.io/gh/sublime247/mobile-money)
+[![codecov](https://codecov.io/gh/sublime247/proxypay/branch/main/graph/badge.svg)](https://codecov.io/gh/sublime247/proxypay)
 
 ### Codecov Dashboard
 
-Visit: https://codecov.io/gh/sublime247/mobile-money
+Visit: https://codecov.io/gh/sublime247/proxypay
 
 Features:
 
@@ -154,7 +154,7 @@ See `.github/workflows/ci.yml` and `.github/workflows/coverage.yml`
 
 1. Go to https://codecov.io
 2. Sign in with GitHub
-3. Add repository: sublime247/mobile-money
+3. Add repository: sublime247/proxypay
 
 ### 2. Get Codecov Token
 
@@ -264,3 +264,4 @@ Monitor in Codecov dashboard:
 - Build output (`dist/**/*`)
 
 See `codecov.yml` for full exclusion list.
+

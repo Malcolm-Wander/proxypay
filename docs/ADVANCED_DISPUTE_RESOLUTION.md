@@ -435,3 +435,4 @@ curl -X POST -H "Authorization: Bearer <token>" \
 ```
 
 This completes the advanced dispute resolution workflow implementation with evidence attachments, internal notes, automated SLA warnings, and state machine management.
+

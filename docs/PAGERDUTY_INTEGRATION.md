@@ -170,7 +170,7 @@ if ((stripeMetrics?.errorRate ?? 0) > 0.15) {
     "summary": "[CRITICAL] Provider stripe error rate at 18.50% (threshold: 15%)",
     "timestamp": "2024-03-28T14:30:00.000Z",
     "severity": "critical",
-    "source": "mobile-money-api",
+    "source": "proxypay-api",
     "custom_details": {
       "provider": "stripe",
       "errorRatePercentage": "18.50",
@@ -192,7 +192,7 @@ if ((stripeMetrics?.errorRate ?? 0) > 0.15) {
     "summary": "[RESOLVED] Provider stripe error rate recovered to 12.00%",
     "timestamp": "2024-03-28T14:35:00.000Z",
     "severity": "info",
-    "source": "mobile-money-api",
+    "source": "proxypay-api",
     "custom_details": {
       "provider": "stripe",
       "errorRatePercentage": "12.00"
@@ -327,3 +327,4 @@ For issues or questions:
 2. Verify PagerDuty integration key validity
 3. Test with manual error rate simulation
 4. Review PagerDuty incident history for details
+

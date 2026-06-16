@@ -5,7 +5,7 @@ import { Pool } from "pg";
 import { Sep12Service, Sep12CustomerStatus } from "./sep12";
 
 const getSep6Config = () => ({
-  transferServer: process.env.STELLAR_TRANSFER_SERVER || "https://api.mobilemoney.com",
+  transferServer: process.env.STELLAR_TRANSFER_SERVER || "https://api.proxypay.com",
   anchorStellarAccount: process.env.STELLAR_ISSUER_ACCOUNT || "G_YOUR_ANCHOR_ACCOUNT",
   assets: {
     XLM: {

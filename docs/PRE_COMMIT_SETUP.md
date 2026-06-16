@@ -194,7 +194,7 @@ ggshield secret scan repo .
 
 ```bash
 # Clone
-git clone https://github.com/sublime247/mobile-money.git
+git clone https://github.com/sublime247/proxypay.git
 cd mobile-money
 
 # Install pre-commit
@@ -248,3 +248,4 @@ git reset --hard
 5. **Ask questions** - If setup issues, ask the team!
 
 Remember: **Pre-commit hooks protect YOU and the team!** ✨
+

@@ -35,8 +35,7 @@ export class FederationService {
     const parsed = parseFederationAddress(address);
     if (!parsed) return null;
 
-    const domain = (process.env.STELLAR_FEDERATION_DOMAIN || "mobilemoney.com").toLowerCase().trim();
-    if (parsed.domain.toLowerCase().trim() !== domain) {
+    const domain = (process.env.STELLAR_FEDERATION_DOMAIN || "proxypay.com").toLowerCase().trim();
       return null;
     }
 
@@ -98,7 +97,7 @@ export class FederationService {
   }
 
   async lookupById(accountId: string): Promise<{ stellar_address: string; account_id: string; memo_type?: string; memo?: string } | null> {
-    const domain = (process.env.STELLAR_FEDERATION_DOMAIN || "mobilemoney.com").toLowerCase().trim();
+    const domain = (process.env.STELLAR_FEDERATION_DOMAIN || "proxypay.com").toLowerCase().trim();
     try {
       const res = await this.db.query(
         "SELECT id, stellar_address, username, phone_hash, email_hash FROM users WHERE stellar_address = $1",
@@ -163,7 +162,7 @@ export function createFederationRouter(db: Pool): Router {
 
 export function buildStellarToml(): string {
   const passphrase = getNetworkPassphrase();
-  const domain = process.env.STELLAR_FEDERATION_DOMAIN || "mobilemoney.com";
+  const domain = process.env.STELLAR_FEDERATION_DOMAIN || "proxypay.com";
 
   return [
     `FEDERATION_SERVER="https://${domain}/federation"`,

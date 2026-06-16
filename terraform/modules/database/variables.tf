@@ -39,7 +39,7 @@ variable "db_max_allocated_storage" {
 variable "db_name" {
   description = "Name of the default database"
   type        = string
-  default     = "mobilemoney_stellar"
+  default     = "proxypay_stellar"
 }
 
 variable "db_username" {

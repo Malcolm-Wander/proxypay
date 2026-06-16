@@ -14,7 +14,7 @@ export function getRpConfig(): {
   origin: string;
 } {
   return {
-    rpName: process.env.WEBAUTHN_RP_NAME || "Mobile Money App",
+    rpName: process.env.WEBAUTHN_RP_NAME || "ProxyPay",
     rpID: process.env.WEBAUTHN_RP_ID || "localhost",
     origin: process.env.WEBAUTHN_ORIGIN || "http://localhost:3000",
   };

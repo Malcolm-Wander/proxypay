@@ -30,7 +30,7 @@ Endpoints:
    `/var/log/mobile-money/app.log`.
 2. Filebeat tails that file and forwards NDJSON events to Logstash.
 3. Logstash applies the Elasticsearch template with ILM policy and writes to a managed
-   rollover alias (`mobile-money-logs`), creating new indices every 30 days.
+   rollover alias (`proxypay-logs`), creating new indices every 30 days.
 4. Kibana imports a starter dashboard automatically.
 
 ## ILM Policy Setup
@@ -79,3 +79,4 @@ It includes:
 - This setup disables Elasticsearch security for local development.
 - The log template maps `log.level` as a keyword and `message` as full text for
   fast filtering plus free-text search.
+

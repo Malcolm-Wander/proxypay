@@ -24,7 +24,7 @@ import { REDACT_KEYS } from './redact';
  * transport sees them.
  */
 
-const SERVICE_NAME = process.env.SERVICE_NAME ?? 'mobile-money-api';
+const SERVICE_NAME = process.env.SERVICE_NAME ?? 'proxypay-api';
 const INSTANCE_ID = `${os.hostname()}:${process.pid}`;
 const LOG_LEVEL = process.env.LOG_LEVEL ?? 'info';
 

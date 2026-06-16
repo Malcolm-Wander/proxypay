@@ -96,3 +96,4 @@ Comprehensive tests are located in `src/tests/graphql-depth-complexity.test.ts`:
 
 - [graphql-depth-limit](https://github.com/stems/graphql-depth-limit)
 - Issue #880
+

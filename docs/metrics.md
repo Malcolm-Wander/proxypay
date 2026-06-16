@@ -149,3 +149,4 @@ To add new metrics calculations:
 3. Implement Redis caching with appropriate key prefix
 4. Add endpoint to `src/routes/admin.ts`
 5. Follow existing pattern for error handling and response format
+

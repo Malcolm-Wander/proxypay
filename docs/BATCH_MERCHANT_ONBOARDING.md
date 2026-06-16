@@ -368,3 +368,4 @@ npm test -- --testPathPattern=merchants
 4. Merchant group tagging
 5. Bulk update/edit capabilities
 6. CSV template download
+

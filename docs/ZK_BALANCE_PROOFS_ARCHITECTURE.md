@@ -241,3 +241,4 @@ Each flag is tied to a partner allow-list so a single merchant can pilot without
 4. **Denomination.** Do commitments carry a currency tag or is each user's commitment scoped to their primary currency only? Multi-currency users will break a scalar-only commitment scheme; leaning one commitment per (user, currency) pair, tracked by scheme suffix.
 
 These unblock during P1 design review and are called out here so reviewers know what is and isn't settled.
+

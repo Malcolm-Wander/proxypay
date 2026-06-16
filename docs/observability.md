@@ -8,9 +8,9 @@ This document outlines the logging architecture and provides the necessary LogQL
 This query calculates the percentage of logs with `level="ERROR"` relative to total logs.
 
 ```logql
-sum(rate({container="mobilemoney_app"} | json | level="ERROR" [5m])) 
+sum(rate({container="proxypay_app"} | json | level="ERROR" [5m])) 
 / 
-sum(rate({container="mobilemoney_app"} [5m])) 
+sum(rate({container="proxypay_app"} [5m])) 
 * 100
 ```
 
@@ -19,21 +19,21 @@ This query calculates the 99th percentile of response latency.
 *Note: Requires logging `duration` or `responseTime` in the JSON payload.*
 
 ```logql
-quantile_over_time(0.99, {container="mobilemoney_app"} | json | unwrap duration [5m])
+quantile_over_time(0.99, {container="proxypay_app"} | json | unwrap duration [5m])
 ```
 
 ### 3. Security Events
 Monitor custom "SECURITY" level logs.
 
 ```logql
-{container="mobilemoney_app"} | json | level="SECURITY"
+{container="proxypay_app"} | json | level="SECURITY"
 ```
 
 ### 4. Audit Trail
 Monitor custom "AUDIT" level logs.
 
 ```logql
-{container="mobilemoney_app"} | json | level="AUDIT"
+{container="proxypay_app"} | json | level="AUDIT"
 ```
 
 ## Setup Instructions
@@ -55,3 +55,4 @@ Monitor custom "AUDIT" level logs.
    ```bash
    bash scripts/verify-logging.sh
    ```
+

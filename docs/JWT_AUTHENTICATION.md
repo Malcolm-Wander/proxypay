@@ -239,3 +239,4 @@ console.log(token);
 ## Migration Notes
 
 This JWT implementation replaces the previous admin API key authentication for protected routes. The existing `requireAuth` middleware (using X-API-Key) is still available for admin endpoints.
+

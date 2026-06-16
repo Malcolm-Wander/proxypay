@@ -42,7 +42,7 @@ variable "app_port" {
 variable "container_image" {
   description = "Docker image for the application (e.g. ECR URI)"
   type        = string
-  default     = "shantelpeters/mobile-money:latest"
+  default     = "shantelpeters/proxypay:latest"
 }
 
 variable "task_cpu" {

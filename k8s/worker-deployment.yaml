@@ -5,15 +5,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mobile-money-worker
+  name: proxypay-worker
   labels:
-    app: mobile-money-worker
+    app: proxypay-worker
 spec:
   # Start with 1 replica; KEDA takes over from here
   replicas: 1
   selector:
     matchLabels:
-      app: mobile-money-worker
+      app: proxypay-worker
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -22,7 +22,7 @@ spec:
   template:
     metadata:
       labels:
-        app: mobile-money-worker
+        app: proxypay-worker
       annotations:
         prometheus.io/scrape: "true"
         prometheus.io/port: "3000"
@@ -30,8 +30,8 @@ spec:
     spec:
       terminationGracePeriodSeconds: 60
       containers:
-        - name: mobile-money-worker
-          image: shantelpeters/mobile-money:latest
+        - name: proxypay-worker
+          image: shantelpeters/proxypay:latest
           # Run in worker-only mode — no HTTP server
           env:
             - name: NODE_ENV
@@ -71,10 +71,10 @@ spec:
 apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:
-  name: mobile-money-worker-pdb
+  name: proxypay-worker-pdb
 spec:
   # Allow KEDA to scale down to 0 but protect against involuntary disruptions
   minAvailable: 0
   selector:
     matchLabels:
-      app: mobile-money-worker
+      app: proxypay-worker

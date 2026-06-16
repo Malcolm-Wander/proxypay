@@ -19,15 +19,15 @@
 apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
-  name: mobile-money-worker-scaledobject
+  name: proxypay-worker-scaledobject
   namespace: default
   labels:
-    app: mobile-money-worker
+    app: proxypay-worker
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: mobile-money-worker
+    name: proxypay-worker
 
   # Never scale below 1 replica so there is always a worker ready
   minReplicaCount: 1
@@ -44,7 +44,7 @@ spec:
     - type: metrics-api
       metadata:
         # Internal service URL — KEDA runs inside the cluster
-        url: "http://mobile-money-service.default.svc.cluster.local:3000/health/queue/depth"
+        url: "http://proxypay-service.default.svc.cluster.local:3000/health/queue/depth"
         # JSON path to the depth value in the response
         valueLocation: "total_depth"
         # Scale up when total_depth exceeds 20 pending jobs per replica

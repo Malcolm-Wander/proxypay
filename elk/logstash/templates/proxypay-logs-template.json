@@ -1,12 +1,12 @@
 {
-  "index_patterns": ["mobile-money-logs-*"],
+  "index_patterns": ["proxypay-logs-*"],
   "template": {
     "settings": {
       "index.refresh_interval": "1s",
       "number_of_shards": 1,
       "number_of_replicas": 0,
-      "index.lifecycle.name": "mobile-money-logs-policy",
-      "index.lifecycle.rollover_alias": "mobile-money-logs"
+      "index.lifecycle.name": "proxypay-logs-policy",
+      "index.lifecycle.rollover_alias": "proxypay-logs"
     },
     "mappings": {
       "dynamic_templates": [

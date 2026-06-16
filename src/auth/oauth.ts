@@ -123,8 +123,8 @@ function getOAuthConfig(): OAuthClientConfig {
     clientSecret: process.env.OAUTH_CLIENT_SECRET || "change-me-in-production",
     redirectUri:
       process.env.OAUTH_REDIRECT_URI || "http://localhost:3000/oauth/callback",
-    issuer: process.env.OAUTH_ISSUER || "mobile-money-api",
-    audience: process.env.OAUTH_AUDIENCE || "mobile-money-api",
+    issuer: process.env.OAUTH_ISSUER || "proxypay-api",
+    audience: process.env.OAUTH_AUDIENCE || "proxypay-api",
     accessTokenTtlSeconds: parsePositiveInt(
       process.env.OAUTH_ACCESS_TOKEN_TTL_SECONDS,
       3600,

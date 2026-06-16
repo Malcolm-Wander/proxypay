@@ -25,7 +25,7 @@ describe("structured logger rolling mirror", () => {
   });
 
   it("rotates oversized local logs into compressed shards", () => {
-    const dir = tempDir("mobile-money-logs-");
+    const dir = tempDir("proxypay-logs-");
     const logFilePath = path.join(dir, "app.log");
 
     process.env.NODE_ENV = "development";

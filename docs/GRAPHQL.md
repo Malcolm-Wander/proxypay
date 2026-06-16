@@ -220,3 +220,4 @@ GraphQL responses use `errors[].extensions.code` where applicable, for example:
 | `GET /api/transactions/bulk/:jobId` | `bulkImportJob` |
 
 CSV bulk **upload** remains `POST /api/transactions/bulk` (multipart); GraphQL is used to query job status by id.
+

@@ -377,3 +377,4 @@ ON transactions(status);
 - PostgreSQL IN operator: https://www.postgresql.org/docs/current/functions-comparisons.html
 - Pagination best practices: https://www.postgresql.org/docs/current/queries-limit.html
 - Express middleware: https://expressjs.com/guide/using-middleware.html
+

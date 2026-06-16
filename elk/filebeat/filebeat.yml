@@ -14,7 +14,7 @@ processors:
   - add_fields:
       target: ""
       fields:
-        service.name: mobile-money-api
+        service.name: proxypay-api
         observer.type: filebeat
 
 output.logstash:

@@ -554,3 +554,4 @@ For issues or questions:
 2. Review SSO configuration: `GET /api/auth/sso/providers`
 3. Verify group mappings: `GET /api/auth/sso/mappings/:providerId`
 4. Check application logs for `[SSO]` prefixed messages
+

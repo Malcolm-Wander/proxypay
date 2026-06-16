@@ -208,3 +208,4 @@ If you accidentally commit a secret:
 4. **Follow** the remediation steps above
 
 Remember: **It's not a question of IF you'll accidentally commit a secret, but WHEN. Have a plan!**
+

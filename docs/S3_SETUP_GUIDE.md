@@ -16,7 +16,7 @@ This guide walks you through setting up AWS S3 for KYC document storage.
 2. Navigate to **S3** service
 3. Click **Create bucket**
 4. Configure bucket:
-   - **Bucket name**: `mobile-money-kyc-documents` (must be globally unique)
+   - **Bucket name**: `proxypay-kyc-documents` (must be globally unique)
    - **AWS Region**: Choose your preferred region (e.g., `us-east-1`)
    - **Block Public Access**: Keep all options checked (recommended for security)
    - **Bucket Versioning**: Enable (recommended for document history)
@@ -27,16 +27,16 @@ This guide walks you through setting up AWS S3 for KYC document storage.
 
 ```bash
 # Create bucket
-aws s3 mb s3://mobile-money-kyc-documents --region us-east-1
+aws s3 mb s3://proxypay-kyc-documents --region us-east-1
 
 # Enable versioning
 aws s3api put-bucket-versioning \
-  --bucket mobile-money-kyc-documents \
+  --bucket proxypay-kyc-documents \
   --versioning-configuration Status=Enabled
 
 # Enable encryption
 aws s3api put-bucket-encryption \
-  --bucket mobile-money-kyc-documents \
+  --bucket proxypay-kyc-documents \
   --server-side-encryption-configuration '{
     "Rules": [{
       "ApplyServerSideEncryptionByDefault": {
@@ -82,8 +82,8 @@ In the new tab:
         "s3:ListBucket"
       ],
       "Resource": [
-        "arn:aws:s3:::mobile-money-kyc-documents",
-        "arn:aws:s3:::mobile-money-kyc-documents/*"
+        "arn:aws:s3:::proxypay-kyc-documents",
+        "arn:aws:s3:::proxypay-kyc-documents/*"
       ]
     }
   ]
@@ -129,8 +129,8 @@ cat > kyc-upload-policy.json << EOF
         "s3:ListBucket"
       ],
       "Resource": [
-        "arn:aws:s3:::mobile-money-kyc-documents",
-        "arn:aws:s3:::mobile-money-kyc-documents/*"
+        "arn:aws:s3:::proxypay-kyc-documents",
+        "arn:aws:s3:::proxypay-kyc-documents/*"
       ]
     }
   ]
@@ -159,7 +159,7 @@ Add the following to your `.env` file:
 AWS_REGION=us-east-1
 AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
 AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
-AWS_S3_BUCKET=mobile-money-kyc-documents
+AWS_S3_BUCKET=proxypay-kyc-documents
 ```
 
 Replace the values with your actual credentials from Step 2.
@@ -222,7 +222,7 @@ aws s3 mb s3://mobile-money-kyc-logs
 
 # Enable logging
 aws s3api put-bucket-logging \
-  --bucket mobile-money-kyc-documents \
+  --bucket proxypay-kyc-documents \
   --bucket-logging-status '{
     "LoggingEnabled": {
       "TargetBucket": "mobile-money-kyc-logs",
@@ -269,7 +269,7 @@ cat > lifecycle-policy.json << EOF
 EOF
 
 aws s3api put-bucket-lifecycle-configuration \
-  --bucket mobile-money-kyc-documents \
+  --bucket proxypay-kyc-documents \
   --lifecycle-configuration file://lifecycle-policy.json
 ```
 
@@ -279,7 +279,7 @@ Require MFA for deleting objects:
 
 ```bash
 aws s3api put-bucket-versioning \
-  --bucket mobile-money-kyc-documents \
+  --bucket proxypay-kyc-documents \
   --versioning-configuration Status=Enabled,MFADelete=Enabled \
   --mfa "arn:aws:iam::ACCOUNT_ID:mfa/USER TOKENCODE"
 ```
@@ -378,7 +378,7 @@ localstack start
 AWS_REGION=us-east-1
 AWS_ACCESS_KEY_ID=test
 AWS_SECRET_ACCESS_KEY=test
-AWS_S3_BUCKET=mobile-money-kyc-documents
+AWS_S3_BUCKET=proxypay-kyc-documents
 AWS_ENDPOINT_URL=http://localhost:4566
 ```
 
@@ -410,3 +410,4 @@ export const createS3Client = (): S3Client => {
 - [AWS IAM Best Practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html)
 - [S3 Security Best Practices](https://docs.aws.amazon.com/AmazonS3/latest/userguide/security-best-practices.html)
 - [AWS SDK for JavaScript v3](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/)
+

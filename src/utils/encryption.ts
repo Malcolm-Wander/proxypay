@@ -29,7 +29,7 @@ export interface EncryptedPayload {
 export function deriveKey(keyMaterial: string, info = "pii-encryption"): Buffer {
   const ikm = Buffer.from(keyMaterial, "utf8");
   // HKDF extract
-  const prk = crypto.createHmac("sha256", "mobile-money-hkdf-salt").update(ikm).digest();
+  const prk = crypto.createHmac("sha256", "proxypay-hkdf-salt").update(ikm).digest();
   // HKDF expand (single block — 32 bytes is exactly one SHA-256 output)
   const infoBuffer = Buffer.from(info, "utf8");
   const t = crypto.createHmac("sha256", prk)

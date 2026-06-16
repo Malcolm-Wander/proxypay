@@ -1,6 +1,6 @@
 # Zero-Knowledge Balance Proofs — Research Notes
 
-**Issue:** [#531](https://github.com/sublime247/mobile-money/issues/531) · **Status:** Research · **Scope:** Privacy-enhancing roadmap
+**Issue:** [#531](https://github.com/sublime247/proxypay/issues/531) · **Status:** Research · **Scope:** Privacy-enhancing roadmap
 
 This document surveys the ZK techniques available for proving facts about a user's balance *without revealing the balance itself*, evaluates each option against Mobile Money's constraints (Stellar + off-chain mobile-money rails, mid-2026 tooling landscape), and recommends a staged adoption path. A companion prototype lives at [src/crypto/zkBalanceProof.ts](../src/crypto/zkBalanceProof.ts) and a production architecture in [ZK_BALANCE_PROOFS_ARCHITECTURE.md](./ZK_BALANCE_PROOFS_ARCHITECTURE.md).
 
@@ -131,3 +131,4 @@ Tests live in [tests/crypto/zkBalanceProof.test.ts](../tests/crypto/zkBalancePro
 - Stellar Soroban ZK RFC — [link tbd][soroban-zk]
 
 [soroban-zk]: https://github.com/stellar/stellar-protocol/discussions/zk
+

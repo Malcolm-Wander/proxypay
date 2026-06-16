@@ -45,7 +45,7 @@ interface StructuredLogEntry extends JsonRecord {
   };
 }
 
-const SERVICE_NAME = process.env.SERVICE_NAME || "mobile-money-api";
+const SERVICE_NAME = process.env.SERVICE_NAME || "proxypay-api";
 const SERVICE_ENVIRONMENT = process.env.NODE_ENV || "development";
 const DEFAULT_LOG_FILE_PATH =
   process.env.LOG_FILE_PATH || path.join(process.cwd(), "logs", "app.log");

@@ -49,3 +49,4 @@ erDiagram
   USERS ||--o{ TRANSACTIONS : owns
   USERS ||--o{ KYC_APPLICANTS : owns
 ```
+

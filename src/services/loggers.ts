@@ -96,7 +96,7 @@ function getSlackAlertConfig(
     overrides.appName ??
     process.env.SLACK_ALERTS_APP_NAME ??
     process.env.APP_NAME ??
-    "mobile-money-api";
+    "proxypay-api";
 
   const environment =
     overrides.environment ?? process.env.NODE_ENV ?? "development";

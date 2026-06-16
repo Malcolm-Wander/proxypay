@@ -1,16 +1,16 @@
 {{/*
 Common helper templates used by the Mobile Money Helm chart.
 */}}
-{{- define "mobile-money.fullname" -}}
-{{- printf "%s-%s" .Release.Name "mobile-money" | trunc 63 | trimSuffix "-" -}}
+{{- define "proxypay.fullname" -}}
+{{- printf "%s-%s" .Release.Name "proxypay" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
-{{- define "mobile-money.name" -}}
-{{- printf "%s" "mobile-money" -}}
+{{- define "proxypay.name" -}}
+{{- printf "%s" "proxypay" -}}
 {{- end -}}
 
-{{- define "mobile-money.labels" -}}
-app.kubernetes.io/name: {{ include "mobile-money.name" . }}
+{{- define "proxypay.labels" -}}
+app.kubernetes.io/name: {{ include "proxypay.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 app.kubernetes.io/version: {{ .Chart.AppVersion }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}

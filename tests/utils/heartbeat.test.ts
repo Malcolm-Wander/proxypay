@@ -125,7 +125,7 @@ describe("System Heartbeat Metric", () => {
 
       const metrics = await systemHeartbeat.get();
       const heartbeatValue = metrics.values.find(
-        (v: any) => v.labels.service === "mobile-money",
+        (v: any) => v.labels.service === "proxypay",
       );
 
       expect(heartbeatValue).toBeDefined();
@@ -141,7 +141,7 @@ describe("System Heartbeat Metric", () => {
 
       const metrics = await systemHeartbeat.get();
       const heartbeatValue = metrics.values.find(
-        (v: any) => v.labels.service === "mobile-money",
+        (v: any) => v.labels.service === "proxypay",
       );
 
       expect(heartbeatValue).toBeDefined();
@@ -154,11 +154,11 @@ describe("System Heartbeat Metric", () => {
 
       const metrics = await systemHeartbeat.get();
       const heartbeatValue = metrics.values.find(
-        (v: any) => v.labels.service === "mobile-money",
+        (v: any) => v.labels.service === "proxypay",
       );
 
       expect(heartbeatValue).toBeDefined();
-      expect(heartbeatValue.labels.service).toBe("mobile-money");
+      expect(heartbeatValue.labels.service).toBe("proxypay");
     });
   });
 

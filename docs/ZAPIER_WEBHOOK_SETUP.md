@@ -276,3 +276,4 @@ For issues with webhook integration:
 | `WEBHOOK_SECRET` | Yes | Secret key for signing webhooks |
 | `WEBHOOK_MAX_ATTEMPTS` | No | Maximum delivery attempts (default: 3) |
 | `WEBHOOK_BASE_DELAY_MS` | No | Base delay between retries (default: 500) |
+

@@ -485,3 +485,4 @@ CREATE POLICY metabase_provider_filter ON transactions
     FOR SELECT TO metabase_readonly
     USING (provider = current_setting('app.provider', true));
 ```
+

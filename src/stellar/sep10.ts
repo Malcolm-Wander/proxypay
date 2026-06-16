@@ -84,12 +84,12 @@ export function getSep10Config(): Sep10Config {
 
   return {
     signingKey,
-    webAuthDomain: process.env.WEB_AUTH_DOMAIN || "https://api.mobilemoney.com",
+    webAuthDomain: process.env.WEB_AUTH_DOMAIN || "https://api.proxypay.com",
     networkPassphrase: getNetworkPassphrase(),
     jwtSecret,
     challengeExpiresIn: 900, // 15 minutes
     jwtExpiresIn: "1h",
-    homeDomain: process.env.STELLAR_HOME_DOMAIN || "api.mobilemoney.com",
+    homeDomain: process.env.STELLAR_HOME_DOMAIN || "api.proxypay.com",
   };
 }
 

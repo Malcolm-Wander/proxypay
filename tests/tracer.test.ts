@@ -27,7 +27,7 @@ describe("Datadog Tracer initialisation", () => {
     expect(initMock).toHaveBeenCalledWith({
       logInjection: true,
       env: "production",
-      service: "mobile-money",
+      service: "proxypay",
     });
   });
 
@@ -46,7 +46,7 @@ describe("Datadog Tracer initialisation", () => {
     expect(initMock).toHaveBeenCalledWith({
       logInjection: true,
       env: "development",
-      service: "mobile-money",
+      service: "proxypay",
     });
   });
 });

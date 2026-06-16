@@ -95,7 +95,7 @@ export class SnapshotService {
     }
 
     // 7. Send Management Summary Email
-    const managementEmail = process.env.MANAGEMENT_EMAIL || process.env.ORG_SUPPORT_EMAIL || "support@mobilemoney.com";
+    const managementEmail = process.env.MANAGEMENT_EMAIL || process.env.ORG_SUPPORT_EMAIL || "support@proxypay.com";
     await this.emailService.sendManagementSummary(managementEmail, snapshot, growth);
 
     return snapshot;

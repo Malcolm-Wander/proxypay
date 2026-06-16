@@ -2,18 +2,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "mobile-money.fullname" . }}-redis
+  name: {{ include "proxypay.fullname" . }}-redis
   labels:
-    {{ include "mobile-money.labels" . | indent 4 }}
+    {{ include "proxypay.labels" . | indent 4 }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ include "mobile-money.name" . }}-redis
+      app: {{ include "proxypay.name" . }}-redis
   template:
     metadata:
       labels:
-        app: {{ include "mobile-money.name" . }}-redis
+        app: {{ include "proxypay.name" . }}-redis
     spec:
       containers:
         - name: redis
@@ -46,6 +46,6 @@ spec:
       volumes:
         - name: redis-data
           persistentVolumeClaim:
-            claimName: {{ include "mobile-money.fullname" . }}-redis-pvc
+            claimName: {{ include "proxypay.fullname" . }}-redis-pvc
       {{- end }}
 {{- end }}

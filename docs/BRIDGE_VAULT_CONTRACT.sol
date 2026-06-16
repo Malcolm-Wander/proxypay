@@ -378,3 +378,4 @@ contract BridgedAssetVault is Ownable, ReentrancyGuard, Pausable {
         );
     }
 }
+

@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: mobile-money-service
+  name: proxypay-service
 spec:
   selector:
-    app: mobile-money
+    app: proxypay
   ports:
     - protocol: TCP
       port: 80

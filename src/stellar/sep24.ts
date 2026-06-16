@@ -127,10 +127,10 @@ const transactions = new Map<string, Sep24Transaction>();
 
 export const getSep24Config = () => ({
   webAuthDomain:
-    process.env.STELLAR_WEB_AUTH_DOMAIN || "https://api.mobilemoney.com",
+    process.env.STELLAR_WEB_AUTH_DOMAIN || "https://api.proxypay.com",
   interactiveUrlBase:
     process.env.SEP24_INTERACTIVE_URL ||
-    "https://wallet.mobilemoney.com/deposit",
+    "https://wallet.proxypay.com/deposit",
   secretKey: process.env.STELLAR_ISSUER_SECRET || "",
   assets: {
     XLM: {

@@ -328,3 +328,4 @@ export class BridgeService {
 }
 
 export default new BridgeService();
+

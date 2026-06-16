@@ -215,3 +215,4 @@ res.json({
 - `@bull-board/api` - Dashboard API
 - `@bull-board/express` - Dashboard Express adapter
 - `ioredis` - Redis client for BullMQ
+

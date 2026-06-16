@@ -296,7 +296,7 @@ export class PagerDutyService {
             : `[RESOLVED] Provider ${provider} error rate recovered to ${errorPercentage}%`,
         timestamp: new Date().toISOString(),
         severity: action === "trigger" ? "critical" : "info",
-        source: "mobile-money-api",
+        source: "proxypay-api",
         custom_details: {
           provider,
           errorRatePercentage: errorPercentage,
@@ -345,7 +345,7 @@ export class PagerDutyService {
 export function createPagerDutyService(enabled = true): PagerDutyService {
   const config: PagerDutyConfig = {
     integrationKey: process.env.PAGERDUTY_INTEGRATION_KEY || "",
-    dedupKey: process.env.PAGERDUTY_DEDUP_KEY || "mobile-money",
+    dedupKey: process.env.PAGERDUTY_DEDUP_KEY || "proxypay",
     enabled: enabled && !!process.env.PAGERDUTY_INTEGRATION_KEY,
   };
 

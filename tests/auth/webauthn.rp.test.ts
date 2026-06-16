@@ -37,7 +37,7 @@ describe("WebAuthn getRpConfig", () => {
     const getRpConfig = setupMocksAndGetRpConfig();
     const config = getRpConfig();
 
-    expect(config.rpName).toBe("Mobile Money App");
+    expect(config.rpName).toBe("ProxyPay");
     expect(config.rpID).toBe("localhost");
     expect(config.origin).toBe("http://localhost:3000");
   });

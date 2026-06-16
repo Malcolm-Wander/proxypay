@@ -2,15 +2,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "mobile-money.fullname" . }}
+  name: {{ include "proxypay.fullname" . }}
   labels:
-    {{ include "mobile-money.labels" . | indent 4 }}
+    {{ include "proxypay.labels" . | indent 4 }}
   annotations:
     {{- toYaml .Values.serviceAnnotations | nindent 4 }}
 spec:
   type: {{ .Values.app.service.type }}
   selector:
-    app: {{ include "mobile-money.name" . }}
+    app: {{ include "proxypay.name" . }}
   ports:
     - protocol: TCP
       port: {{ .Values.app.service.port }}

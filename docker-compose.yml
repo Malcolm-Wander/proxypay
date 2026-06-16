@@ -1,6 +1,6 @@
 # docker-compose.yml
 #
-# Local development environment for sublime247/mobile-money.
+# Local development environment for proxypay.
 # Starts the app alongside Postgres, Redis, and local mock services for Stellar and SMTP.
 #
 # Usage:
@@ -16,7 +16,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
-    container_name: mobilemoney_app
+    container_name: proxypay_app
     restart: unless-stopped
     depends_on:
       postgres:
@@ -28,15 +28,15 @@ services:
     environment:
       NODE_ENV: development
       LOG_LEVEL: ${LOG_LEVEL:-info}
-      DATABASE_URL: postgresql://user:password@postgres:5432/mobilemoney_stellar
+      DATABASE_URL: postgresql://user:password@postgres:5432/proxypay_stellar
       REDIS_URL: redis://redis:6379
       # Loki transport — optional, falls back to stdout when unset
       LOKI_HOST: ${LOKI_HOST:-http://loki:3100}
-      SERVICE_NAME: ${SERVICE_NAME:-mobile-money-api}
+      SERVICE_NAME: ${SERVICE_NAME:-proxypay-api}
     ports:
       - "3000:3000"
     networks:
-      - mobilemoney_net
+      - proxypay_net
     logging:
       driver: "json-file"
       options:
@@ -44,22 +44,22 @@ services:
 
   postgres:
     image: postgres:16-alpine
-    container_name: mobilemoney_postgres
+    container_name: proxypay_postgres
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: mobilemoney_stellar
+      POSTGRES_DB: proxypay_stellar
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U user -d mobilemoney_stellar"]
+      test: ["CMD-SHELL", "pg_isready -U user -d proxypay_stellar"]
       interval: 5s
       timeout: 5s
       retries: 5
     networks:
-      - mobilemoney_net
+      - proxypay_net
 
   redis:
     image: redis:7-alpine
-    container_name: mobilemoney_redis
+    container_name: proxypay_redis
     command: redis-server /usr/local/etc/redis/redis.conf
     volumes:
       - ./redis.conf:/usr/local/etc/redis/redis.conf:ro
@@ -70,14 +70,14 @@ services:
       timeout: 3s
       retries: 5
     networks:
-      - mobilemoney_net
+      - proxypay_net
 
   # ---------------------------------------------------------------------------
   # Mock SMTP Server (Maildev)
   # ---------------------------------------------------------------------------
   maildev:
     image: maildev/maildev:2.1.0
-    container_name: mobilemoney_maildev
+    container_name: proxypay_maildev
     restart: unless-stopped
     ports:
       - "1080:1080" # Web UI
@@ -93,7 +93,7 @@ services:
   # ---------------------------------------------------------------------------
   stellar:
     image: stellar/quickstart:latest
-    container_name: mobilemoney_stellar_quickstart
+    container_name: proxypay_stellar_quickstart
     restart: unless-stopped
     ports:
       - "8000:8000" # Horizon API / Faucet (Friendbot)
@@ -112,7 +112,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
-    container_name: mobilemoney_app
+    container_name: proxypay_app
     restart: unless-stopped
     depends_on:
       postgres:
@@ -127,7 +127,7 @@ services:
       - .env
     environment:
       # Override the localhost URLs from .env to use Docker service names
-      DATABASE_URL: postgresql://user:password@postgres:5432/mobilemoney_stellar
+      DATABASE_URL: postgresql://user:password@postgres:5432/proxypay_stellar
       REDIS_URL: redis://redis:6379
       SMTP_HOST: maildev
       SMTP_PORT: 1025
@@ -139,21 +139,21 @@ services:
       - ./logging/loki-config.yaml:/etc/loki/local-config.yaml
     command: -config.file=/etc/loki/local-config.yaml
     networks:
-      - mobilemoney_net
+      - proxypay_net
 
   promtail:
     image: grafana/promtail:latest
-    container_name: mobilemoney_promtail
+    container_name: proxypay_promtail
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./logging/promtail-config.yaml:/etc/promtail/config.yml
     command: -config.file=/etc/promtail/config.yml
     networks:
-      - mobilemoney_net
+      - proxypay_net
 
   grafana:
     image: grafana/grafana:latest
-    container_name: mobilemoney_grafana
+    container_name: proxypay_grafana
     ports:
       - "3001:3000"
     environment:
@@ -163,10 +163,10 @@ services:
       - grafana_data:/var/lib/grafana
       - ./logging/grafana/provisioning:/etc/grafana/provisioning
     networks:
-      - mobilemoney_net
+      - proxypay_net
 
 networks:
-  mobilemoney_net:
+  proxypay_net:
     driver: bridge
 
 volumes:

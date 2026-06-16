@@ -11,12 +11,12 @@
 ### Step 2: Add Repository
 
 1. In Codecov dashboard, click "Add new repository"
-2. Find and select `sublime247/mobile-money`
+2. Find and select `sublime247/proxypay`
 3. Copy the upload token shown
 
 ### Step 3: Add GitHub Secret
 
-1. Go to https://github.com/sublime247/mobile-money/settings/secrets/actions
+1. Go to https://github.com/sublime247/proxypay/settings/secrets/actions
 2. Click "New repository secret"
 3. Name: `CODECOV_TOKEN`
 4. Value: [paste the token from Step 2]
@@ -35,7 +35,7 @@
 ### Current Badge
 
 ```markdown
-[![codecov](https://codecov.io/gh/sublime247/mobile-money/branch/main/graph/badge.svg)](https://codecov.io/gh/sublime247/mobile-money)
+[![codecov](https://codecov.io/gh/sublime247/proxypay/branch/main/graph/badge.svg)](https://codecov.io/gh/sublime247/proxypay)
 ```
 
 ### Custom Badge Styles
@@ -43,15 +43,15 @@
 ```markdown
 <!-- Flat style -->
 
-[![codecov](https://codecov.io/gh/sublime247/mobile-money/branch/main/graph/badge.svg?style=flat)](https://codecov.io/gh/sublime247/mobile-money)
+[![codecov](https://codecov.io/gh/sublime247/proxypay/branch/main/graph/badge.svg?style=flat)](https://codecov.io/gh/sublime247/proxypay)
 
 <!-- Flat-square style -->
 
-[![codecov](https://codecov.io/gh/sublime247/mobile-money/branch/main/graph/badge.svg?style=flat-square)](https://codecov.io/gh/sublime247/mobile-money)
+[![codecov](https://codecov.io/gh/sublime247/proxypay/branch/main/graph/badge.svg?style=flat-square)](https://codecov.io/gh/sublime247/proxypay)
 
 <!-- For-the-badge style -->
 
-[![codecov](https://codecov.io/gh/sublime247/mobile-money/branch/main/graph/badge.svg?style=for-the-badge)](https://codecov.io/gh/sublime247/mobile-money)
+[![codecov](https://codecov.io/gh/sublime247/proxypay/branch/main/graph/badge.svg?style=for-the-badge)](https://codecov.io/gh/sublime247/proxypay)
 ```
 
 ## Coverage Thresholds
@@ -197,7 +197,7 @@ If you prefer Coveralls over Codecov:
 ### 4. Update badge:
 
 ```markdown
-[![Coverage Status](https://coveralls.io/repos/github/sublime247/mobile-money/badge.svg?branch=main)](https://coveralls.io/github/sublime247/mobile-money?branch=main)
+[![Coverage Status](https://coveralls.io/repos/github/sublime247/proxypay/badge.svg?branch=main)](https://coveralls.io/github/sublime247/proxypay?branch=main)
 ```
 
 ## Next Steps
@@ -207,3 +207,4 @@ If you prefer Coveralls over Codecov:
 3. Monitor coverage in PRs
 4. Aim to increase coverage over time
 5. Review uncovered code regularly
+

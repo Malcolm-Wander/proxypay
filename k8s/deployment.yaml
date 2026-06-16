@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mobile-money
+  name: proxypay
   labels:
-    app: mobile-money
+    app: proxypay
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: mobile-money
+      app: proxypay
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -17,7 +17,7 @@ spec:
   template:
     metadata:
       labels:
-        app: mobile-money
+        app: proxypay
       annotations:
         prometheus.io/scrape: "true"
         prometheus.io/port: "3000"
@@ -32,8 +32,8 @@ spec:
             - -c
             - "until pg_isready -h postgres-service -p 5432; do echo waiting for database; sleep 2; done;"
       containers:
-        - name: mobile-money
-          image: shantelpeters/mobile-money:latest
+        - name: proxypay
+          image: shantelpeters/proxypay:latest
           ports:
             - containerPort: 3000
           env:
@@ -90,9 +90,9 @@ spec:
 apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:
-  name: mobile-money-pdb
+  name: proxypay-pdb
 spec:
   minAvailable: 2          # always keep at least 2 pods up during voluntary disruptions
   selector:
     matchLabels:
-      app: mobile-money
+      app: proxypay

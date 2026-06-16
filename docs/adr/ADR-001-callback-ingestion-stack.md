@@ -137,3 +137,4 @@ The next-gen core must handle **10,000 req/s sustained** with P99 < 20ms and zer
 - Both prototypes implement identical validation logic and publish to the same Redis stream key (`callbacks`) for fair comparison
 - Channel naming: `XADD callbacks * event_type <type> provider <p> reference <ref> data <json>`
 - Consumer services read via `XREADGROUP` with `XACK` for at-least-once delivery
+

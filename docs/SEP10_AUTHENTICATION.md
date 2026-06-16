@@ -398,3 +398,4 @@ SEP-10 authentication provides:
 - [Stellar SDK Documentation](https://stellar.github.io/js-stellar-sdk/)
 - [Stellar Laboratory](https://laboratory.stellar.org)
 - [Stellar Network Passphrases](https://developers.stellar.org/docs/glossary/network-passphrase/)
+

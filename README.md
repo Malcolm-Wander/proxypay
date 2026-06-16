@@ -1,7 +1,7 @@
-# Mobile Money ↔ Stellar Bridge
+# ProxyPay ↔ Stellar Bridge
 
-[![CI](https://github.com/sublime247/mobile-money/actions/workflows/ci.yml/badge.svg)](https://github.com/sublime247/mobile-money/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/sublime247/mobile-money/branch/main/graph/badge.svg)](https://codecov.io/gh/sublime247/mobile-money)
+[![CI](https://github.com/sublime247/proxypay/actions/workflows/ci.yml/badge.svg)](https://github.com/sublime247/proxypay/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/sublime247/proxypay/branch/main/graph/badge.svg)](https://codecov.io/gh/sublime247/proxypay)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A backend service that bridges African mobile money providers (MTN MoMo, Airtel Money, Orange Money) with the [Stellar](https://stellar.org) blockchain network — enabling low-cost cross-border payments and remittances across Africa and beyond.
@@ -12,7 +12,7 @@ Sending money across African borders is expensive and slow. Traditional remittan
 
 ## 💡 The Solution
 
-This platform connects mobile money wallets to the Stellar blockchain, allowing users to:
+ProxyPay connects mobile money wallets to the Stellar blockchain, allowing users to:
 
 1. **Deposit** mobile money (XAF) → receive Stellar tokens (XLM, USDC)
 2. **Transfer** tokens across Stellar's network in ~5 seconds, for fractions of a cent
@@ -25,7 +25,7 @@ The sender and recipient interact with their familiar mobile money apps. Stellar
          │                                                  ▲
          ▼                                                  │
   ┌─────────────────────────────────────────────────────────────────┐
-  │                    Mobile Money ↔ Stellar Bridge                │
+  │                       ProxyPay Bridge                          │
   │                                                                 │
   │   Deposit (XAF → USDC)  ──►  Stellar Network  ──►  Withdraw    │
   │                              (settles in ~5s)                   │
@@ -107,8 +107,8 @@ The sender and recipient interact with their familiar mobile money apps. Stellar
 ### 1. Clone & Install
 
 ```bash
-git clone https://github.com/sublime247/mobile-money.git
-cd mobile-money
+git clone https://github.com/sublime247/proxypay.git
+cd proxypay
 npm install
 ```
 
@@ -122,7 +122,7 @@ Edit `.env` with your configuration (see `.env.example` for all ~470 configurati
 
 ```bash
 # Database
-DATABASE_URL=postgresql://user:password@localhost:5432/mobilemoney
+DATABASE_URL=postgresql://user:password@localhost:5432/proxypay_stellar
 
 # Redis
 REDIS_URL=redis://localhost:6379
@@ -192,7 +192,7 @@ npm run test:mutation       # Mutation testing (Stryker)
 - Stryker mutation testing
 - Fuzz testing
 
-> Coverage reports upload to [Codecov](https://codecov.io/gh/sublime247/mobile-money) on every push to main.
+> Coverage reports upload to [Codecov](https://codecov.io/gh/sublime247/proxypay) on every push to main.
 
 ## 📚 API Documentation
 
@@ -267,51 +267,6 @@ POST /graphql
 
 Playground: `http://localhost:3000/graphql` (dev only)
 
-```graphql
-# Query transactions
-query {
-  transactions(limit: 10) {
-    id
-    amount
-    status
-    provider
-  }
-}
-
-# Create a deposit
-mutation {
-  createDeposit(input: {
-    amount: "10000"
-    phoneNumber: "+237670000000"
-    provider: MTN
-  }) {
-    id
-    status
-  }
-}
-
-# Real-time subscription
-subscription {
-  transactionUpdated(userId: "user-123") {
-    id
-    status
-    updatedAt
-  }
-}
-```
-
-### Authentication
-
-Most endpoints require JWT:
-```bash
-Authorization: Bearer <token>
-```
-
-Admin operations use API key:
-```bash
-X-API-Key: <key>
-```
-
 ## 🔐 Security
 
 ### Transaction Limits
@@ -328,22 +283,6 @@ X-API-Key: <key>
 | Unverified | 10,000 XAF | Email only |
 | Basic | 100,000 XAF | ID + selfie |
 | Full | 1,000,000 XAF | Proof of address + video |
-
-### Provider Limits
-
-| Provider | Min | Max |
-|----------|-----|-----|
-| MTN | 100 XAF | 500,000 XAF |
-| Airtel | 100 XAF | 1,000,000 XAF |
-| Orange | 500 XAF | 750,000 XAF |
-
-### AML Monitoring
-
-Auto-flagging of suspicious transactions:
-- Single transaction > 1,000,000 XAF
-- 24h total > 5,000,000 XAF
-- Rapid structuring (3+ mixed in 15 min)
-- Sanctions list screening on every transaction
 
 ## 🏗️ Architecture
 
@@ -366,7 +305,7 @@ Auto-flagging of suspicious transactions:
 ### Project Structure
 
 ```
-mobile-money/
+proxypay/
 ├── src/
 │   ├── auth/              # Authentication & authorization
 │   ├── compliance/        # Travel rule, sanctions
@@ -399,7 +338,6 @@ mobile-money/
 ├── benchmarks/            # k6 load testing suite
 ├── bridge-starter-node/   # Webhook bridge starter template
 ├── docs/                  # Extensive documentation (59 docs)
-├── docs-portal/           # Docusaurus documentation site
 ├── extensions/            # VS Code transaction monitor extension
 ├── postman/               # API testing collections
 ├── migrations/            # Database migrations (47 migrations)
@@ -415,49 +353,12 @@ mobile-money/
 
 ### Migrations
 
-47 migration files covering the full schema — transactions (partitioned), users, disputes, vaults, ledger (double-entry), webhooks, KYC, AML alerts, compliance documents, fee strategies, and more.
-
 ```bash
 npm run migrate:create -- migration_name  # Create
 npm run migrate:up                        # Run all pending
 npm run migrate:down                      # Rollback last
 npm run migrate:status                    # Check status
 ```
-
-### Read Replica Routing
-
-HTTP method-based routing: `GET`/`HEAD`/`OPTIONS` → read replicas (round-robin), write operations → primary. Automatic fallback to primary if replicas are unavailable.
-
-## 📊 Monitoring & Observability
-
-### Metrics
-
-Prometheus metrics at `/metrics`:
-- Transaction counts by status and provider
-- API response times (histograms)
-- Queue depths and job latencies
-- Error rates by category
-- Provider availability and circuit breaker state
-
-### Health Checks
-
-```bash
-curl http://localhost:3000/health     # Liveness
-curl http://localhost:3000/ready      # Readiness (DB + Redis)
-curl http://localhost:3000/health/lb  # Load balancer
-```
-
-### Logging
-
-Dual logging stack:
-- **Primary**: Structured JSON → Loki → Grafana (included in docker-compose)
-- **Secondary**: Filebeat → Logstash → Elasticsearch → Kibana (ELK stack configs in `elk/`)
-
-### Alerting
-
-- **Sentry** — Error tracking and exception monitoring
-- **Datadog** — APM tracing (dd-trace)
-- **PagerDuty** — Operational alerts (low liquidity, provider outages)
 
 ## 🚢 Deployment
 
@@ -468,34 +369,17 @@ Dual logging stack:
 docker compose up
 
 # Production build
-docker build -t mobile-money:latest .
-docker run -p 3000:3000 --env-file .env mobile-money:latest
+docker build -t proxypay:latest .
+docker run -p 3000:3000 --env-file .env proxypay:latest
 ```
 
-The production Dockerfile uses a multi-stage build targeting < 200MB image size with a non-root user.
-
 ### Kubernetes
-
-Pre-built manifests in `k8s/` include:
-- **Deployment** — 3 replicas, rolling updates, startup/liveness/readiness probes, resource limits
-- **Worker Deployment** — Separate BullMQ worker pods
-- **KEDA Autoscaling** — Scale workers based on queue depth (threshold: 20 jobs, 1–20 replicas)
-- **HPA** — CPU-based horizontal pod autoscaling for the API
-- **PodDisruptionBudget** — Minimum 2 available pods during disruptions
-- **Helm Chart** — Parameterized deployment in `k8s/helm/`
 
 ```bash
 kubectl apply -f k8s/
 ```
 
 ### Terraform (AWS)
-
-Full AWS infrastructure in `terraform/`:
-- VPC with public/private subnets across multiple AZs
-- ECS Fargate for containerized deployment
-- RDS PostgreSQL with Multi-AZ (production)
-- ElastiCache Redis with failover
-- Application Load Balancer
 
 ```bash
 cd terraform
@@ -505,100 +389,13 @@ terraform plan -var-file=environments/production.tfvars
 terraform apply
 ```
 
-### CI/CD
-
-GitHub Actions pipeline (`.github/workflows/ci.yml`):
-1. **Security** — npm audit, Snyk vulnerability scanning
-2. **Test** — Lint, Jest (with Postgres + Redis services), Playwright E2E, Codecov upload
-3. **Build** — TypeScript compilation
-4. **Docker** — Build and push image on main branch
-5. **Deploy** — kubectl apply → rollout status → health check → auto-rollback on failure
-
-## 🐛 Troubleshooting
-
-See [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for detailed error codes and solutions.
-
-### Common Issues
-
-**Database connection fails:**
-```bash
-pg_isready -h localhost -p 5432
-# Verify DATABASE_URL format
-```
-
-**Redis connection fails:**
-```bash
-redis-cli ping  # Should return PONG
-```
-
-**Stellar transactions fail:**
-```bash
-echo $STELLAR_NETWORK  # Should be 'testnet' or 'mainnet'
-curl https://horizon-testnet.stellar.org
-```
-
-**Provider mock not working:**
-```bash
-# Use docker-compose.dev.yml which includes the mock server
-docker compose -f docker-compose.dev.yml up
-```
-
-## 🚨 Error Handling
-
-Standardized error codes organized by category:
-- **4000-4099**: Validation (HTTP 400)
-- **4010-4019**: Authentication (HTTP 401)
-- **4030-4039**: Authorization (HTTP 403)
-- **4040-4049**: Not Found (HTTP 404)
-- **4090-4099**: Conflict (HTTP 409)
-- **4290-4299**: Rate Limit (HTTP 429)
-- **5000+**: Server Errors (HTTP 500+)
-
-See [src/constants/errorCodes.ts](src/constants/errorCodes.ts) for complete reference.
-
-## 📖 Documentation
-
-Extensive documentation is available in the [`docs/`](docs/) directory (59 documents), covering:
-
-- **Architecture** — System design, Stellar-EVM bridge architecture, ZK balance proofs research
-- **Features** — KYC, RBAC, GraphQL, SSO, transaction filtering, monthly statements, vaults
-- **Stellar/SEP** — SEP-10/12/31 implementation guides, fee bumping, fee strategy engine
-- **Infrastructure** — CI/CD pipeline, Docker dev setup, ELK stack, database backups, distributed locks
-- **Integrations** — Bridge provider guides, Orange integration, Zapier/Make.com webhooks
-- **Observability** — Metrics, slow query logging, PagerDuty, low liquidity alerts
-
-A Docusaurus documentation portal is available in [`docs-portal/`](docs-portal/).
-
 ## 🤝 Contributing
 
 We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md).
 
-### Workflow
-
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/amazing-feature`)
-3. Make changes and run tests (`npm test`)
-4. Commit (`git commit -m 'Add amazing feature'`)
-5. Push (`git push origin feature/amazing-feature`)
-6. Open Pull Request
-
-Pre-commit hooks run ESLint, Prettier, TypeScript checks, and tests automatically.
-
 ### Good First Issues
 
-Check [`good first issue`](https://github.com/sublime247/mobile-money/labels/good%20first%20issue) label.
-
-## 🗺️ Roadmap
-
-- [ ] SEP-38 implementation (Quotes and Price Streams)
-- [ ] Additional providers (Vodacom, Tigo, M-Pesa)
-- [ ] Mobile SDKs (iOS, Android)
-- [ ] Merchant dashboard UI
-- [ ] Advanced analytics and reporting dashboard
-- [ ] Multi-currency settlement support
-- [ ] Additional stablecoin support (USDT, EURC)
-- [ ] DeFi protocol integrations
-- [ ] External accounting integrations (QuickBooks, Xero)
+Check [`good first issue`](https://github.com/sublime247/proxypay/labels/good%20first%20issue) label.
 
 ## 📝 License
 
@@ -612,9 +409,8 @@ MIT License — see [LICENSE](LICENSE) file.
 
 ## 📞 Support
 
-- **Issues**: [GitHub Issues](https://github.com/sublime247/mobile-money/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/sublime247/mobile-money/discussions)
-- **Docs**: [Documentation Portal](docs-portal/)
+- **Issues**: [GitHub Issues](https://github.com/sublime247/proxypay/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/sublime247/proxypay/discussions)
 
 ---
 

@@ -284,3 +284,4 @@ jest.mock("../utils/lock", () => ({
 - Check REDIS_URL environment variable
 - Verify Redis server is running
 - Check network connectivity
+

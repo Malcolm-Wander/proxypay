@@ -75,8 +75,8 @@ jobs:
           STELLAR_ISSUER_SECRET: ${{ secrets.STAGING_STELLAR_ISSUER_SECRET }}
         run: |
           kubectl apply -f k8s/
-          kubectl set image deployment/mobile-money mobile-money=${{ env.IMAGE }}:${{ github.event.workflow_run.head_sha }}
-          kubectl rollout status deployment/mobile-money --timeout=${{ env.DEPLOY_TIMEOUT }}
+          kubectl set image deployment/proxypay proxypay=${{ env.IMAGE }}:${{ github.event.workflow_run.head_sha }}
+          kubectl rollout status deployment/proxypay --timeout=${{ env.DEPLOY_TIMEOUT }}
 
       - name: Health check staging
         if: steps.check_secrets.outputs.credentials_available == 'true'
@@ -117,4 +117,4 @@ jobs:
         if: failure() && steps.check_secrets.outputs.credentials_available == 'true'
         run: |
           echo "Deployment failed. Collecting logs for diagnostics."
-          kubectl logs deployment/mobile-money --tail=200 || true
+          kubectl logs deployment/proxypay --tail=200 || true

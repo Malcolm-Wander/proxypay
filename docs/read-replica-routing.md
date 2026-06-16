@@ -260,3 +260,4 @@ Use tools like pgbench to verify:
 - PostgreSQL Streaming Replication: https://www.postgresql.org/docs/current/warm-standby.html
 - Read Scaling Patterns: https://wiki.postgresql.org/wiki/Replication,_Clustering,_and_Connection_Pooling
 - Implementation Details: `src/config/database.ts`, `src/utils/readOnlyDetector.ts`
+

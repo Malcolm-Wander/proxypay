@@ -69,7 +69,7 @@ const logger: Logger = pino(
     },
 
     // Emit level as an uppercase string label (INFO, WARN, …) to match the
-    // convention used by the main mobile-money-api service.
+    // convention used by the main proxypay-api service.
     formatters: {
       level: (label) => ({ level: label.toUpperCase() }),
     },

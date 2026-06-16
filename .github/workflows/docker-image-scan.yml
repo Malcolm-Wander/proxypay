@@ -19,13 +19,13 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t mobile-money:${{ github.sha }} -f Dockerfile .
+          docker build -t proxypay:${{ github.sha }} -f Dockerfile .
 
       - name: Run Trivy vulnerability scan
         uses: aquasecurity/trivy-action@master
         continue-on-error: true
         with:
-          image-ref: mobile-money:${{ github.sha }}
+          image-ref: proxypay:${{ github.sha }}
           format: json
           output: trivy-report.json
           exit-code: '1'
